@@ -9,21 +9,47 @@
 /* Begin PBXBuildFile section */
 		9F87AD4B26415035000993B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87AD4A26415035000993B9 /* AppDelegate.swift */; };
 		9F87AD4D26415035000993B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87AD4C26415035000993B9 /* SceneDelegate.swift */; };
-		9F87AD4F26415035000993B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87AD4E26415035000993B9 /* ViewController.swift */; };
 		9F87AD5226415035000993B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F87AD5026415035000993B9 /* Main.storyboard */; };
 		9F87AD5426415037000993B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F87AD5326415037000993B9 /* Assets.xcassets */; };
 		9F87AD5726415037000993B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F87AD5526415037000993B9 /* LaunchScreen.storyboard */; };
+		9F87AD6026415113000993B9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87AD5F26415113000993B9 /* LoginViewController.swift */; };
+		9F87AD632641512D000993B9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87AD622641512D000993B9 /* MapViewController.swift */; };
+		9F87AD662641513D000993B9 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87AD652641513D000993B9 /* TableViewController.swift */; };
+		9F87AD6926415154000993B9 /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87AD6826415154000993B9 /* InformationPostingViewController.swift */; };
+		9F87AD6F264168E3000993B9 /* SessionPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87AD6E264168E3000993B9 /* SessionPost.swift */; };
+		9F8C5F4B2641FE9A0029EDAD /* StudentLocationsGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F4A2641FE9A0029EDAD /* StudentLocationsGet.swift */; };
+		9F8C5F512641FF410029EDAD /* ResponseStudentsLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F502641FF410029EDAD /* ResponseStudentsLocation.swift */; };
+		9F8C5F542641FF900029EDAD /* UdacityResponseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F532641FF900029EDAD /* UdacityResponseSession.swift */; };
+		9F8C5F59264200CC0029EDAD /* OTMClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F58264200CC0029EDAD /* OTMClient.swift */; };
+		9F8C5F6026421F920029EDAD /* ResponseStudentLocationPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F5F26421F920029EDAD /* ResponseStudentLocationPost.swift */; };
+		9F8C5F652642289D0029EDAD /* RequestStudentLocationPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F642642289D0029EDAD /* RequestStudentLocationPost.swift */; };
+		9F8C5F6826422AF40029EDAD /* StudentLocationPut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F6726422AF40029EDAD /* StudentLocationPut.swift */; };
+		9F8C5F6B26422BD20029EDAD /* SessionPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F6A26422BD20029EDAD /* SessionPostRequest.swift */; };
+		9F8C5F6E264279E40029EDAD /* GetPublicUserDataUdacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F6D264279E40029EDAD /* GetPublicUserDataUdacity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9F87AD4726415035000993B9 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F87AD4A26415035000993B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F87AD4C26415035000993B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9F87AD4E26415035000993B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9F87AD5126415035000993B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9F87AD5326415037000993B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F87AD5626415037000993B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F87AD5826415037000993B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F87AD5F26415113000993B9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9F87AD622641512D000993B9 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		9F87AD652641513D000993B9 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		9F87AD6826415154000993B9 /* InformationPostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
+		9F87AD6E264168E3000993B9 /* SessionPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPost.swift; sourceTree = "<group>"; };
+		9F8C5F4A2641FE9A0029EDAD /* StudentLocationsGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationsGet.swift; sourceTree = "<group>"; };
+		9F8C5F502641FF410029EDAD /* ResponseStudentsLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStudentsLocation.swift; sourceTree = "<group>"; };
+		9F8C5F532641FF900029EDAD /* UdacityResponseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityResponseSession.swift; sourceTree = "<group>"; };
+		9F8C5F58264200CC0029EDAD /* OTMClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTMClient.swift; sourceTree = "<group>"; };
+		9F8C5F5F26421F920029EDAD /* ResponseStudentLocationPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStudentLocationPost.swift; sourceTree = "<group>"; };
+		9F8C5F642642289D0029EDAD /* RequestStudentLocationPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStudentLocationPost.swift; sourceTree = "<group>"; };
+		9F8C5F6726422AF40029EDAD /* StudentLocationPut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationPut.swift; sourceTree = "<group>"; };
+		9F8C5F6A26422BD20029EDAD /* SessionPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPostRequest.swift; sourceTree = "<group>"; };
+		9F8C5F6D264279E40029EDAD /* GetPublicUserDataUdacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPublicUserDataUdacity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +66,9 @@
 		9F87AD3E26415035000993B9 = {
 			isa = PBXGroup;
 			children = (
+				9F8C5F572642007F0029EDAD /* OTM Client */,
+				9F87AD6D26415BC8000993B9 /* OTM Responses */,
+				9F87AD6C26415BBC000993B9 /* OTM Requests */,
 				9F87AD4926415035000993B9 /* OnTheMap */,
 				9F87AD4826415035000993B9 /* Products */,
 			);
@@ -58,13 +87,55 @@
 			children = (
 				9F87AD4A26415035000993B9 /* AppDelegate.swift */,
 				9F87AD4C26415035000993B9 /* SceneDelegate.swift */,
-				9F87AD4E26415035000993B9 /* ViewController.swift */,
 				9F87AD5026415035000993B9 /* Main.storyboard */,
 				9F87AD5326415037000993B9 /* Assets.xcassets */,
 				9F87AD5526415037000993B9 /* LaunchScreen.storyboard */,
 				9F87AD5826415037000993B9 /* Info.plist */,
+				9F8C5F56264200530029EDAD /* Controller */,
 			);
 			path = OnTheMap;
+			sourceTree = "<group>";
+		};
+		9F87AD6C26415BBC000993B9 /* OTM Requests */ = {
+			isa = PBXGroup;
+			children = (
+				9F8C5F642642289D0029EDAD /* RequestStudentLocationPost.swift */,
+				9F8C5F6A26422BD20029EDAD /* SessionPostRequest.swift */,
+				9F8C5F6D264279E40029EDAD /* GetPublicUserDataUdacity.swift */,
+			);
+			path = "OTM Requests";
+			sourceTree = "<group>";
+		};
+		9F87AD6D26415BC8000993B9 /* OTM Responses */ = {
+			isa = PBXGroup;
+			children = (
+				9F8C5F502641FF410029EDAD /* ResponseStudentsLocation.swift */,
+				9F8C5F532641FF900029EDAD /* UdacityResponseSession.swift */,
+				9F8C5F5F26421F920029EDAD /* ResponseStudentLocationPost.swift */,
+				9F8C5F4A2641FE9A0029EDAD /* StudentLocationsGet.swift */,
+				9F87AD6E264168E3000993B9 /* SessionPost.swift */,
+				9F8C5F6726422AF40029EDAD /* StudentLocationPut.swift */,
+			);
+			path = "OTM Responses";
+			sourceTree = "<group>";
+		};
+		9F8C5F56264200530029EDAD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9F87AD6826415154000993B9 /* InformationPostingViewController.swift */,
+				9F87AD652641513D000993B9 /* TableViewController.swift */,
+				9F87AD622641512D000993B9 /* MapViewController.swift */,
+				9F87AD5F26415113000993B9 /* LoginViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9F8C5F572642007F0029EDAD /* OTM Client */ = {
+			isa = PBXGroup;
+			children = (
+				9F8C5F58264200CC0029EDAD /* OTMClient.swift */,
+			);
+			path = "OTM Client";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,9 +208,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F87AD4F26415035000993B9 /* ViewController.swift in Sources */,
+				9F8C5F6B26422BD20029EDAD /* SessionPostRequest.swift in Sources */,
+				9F8C5F652642289D0029EDAD /* RequestStudentLocationPost.swift in Sources */,
+				9F87AD6026415113000993B9 /* LoginViewController.swift in Sources */,
+				9F8C5F59264200CC0029EDAD /* OTMClient.swift in Sources */,
+				9F8C5F6E264279E40029EDAD /* GetPublicUserDataUdacity.swift in Sources */,
+				9F8C5F542641FF900029EDAD /* UdacityResponseSession.swift in Sources */,
+				9F87AD6F264168E3000993B9 /* SessionPost.swift in Sources */,
+				9F87AD662641513D000993B9 /* TableViewController.swift in Sources */,
+				9F8C5F6826422AF40029EDAD /* StudentLocationPut.swift in Sources */,
 				9F87AD4B26415035000993B9 /* AppDelegate.swift in Sources */,
+				9F87AD6926415154000993B9 /* InformationPostingViewController.swift in Sources */,
+				9F8C5F512641FF410029EDAD /* ResponseStudentsLocation.swift in Sources */,
+				9F87AD632641512D000993B9 /* MapViewController.swift in Sources */,
 				9F87AD4D26415035000993B9 /* SceneDelegate.swift in Sources */,
+				9F8C5F6026421F920029EDAD /* ResponseStudentLocationPost.swift in Sources */,
+				9F8C5F4B2641FE9A0029EDAD /* StudentLocationsGet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
