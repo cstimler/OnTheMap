@@ -8,10 +8,19 @@
 import Foundation
 
 struct IdDict: Codable {
-    let username: String
-    let password: String
+    var username: String = ""
+    var password: String = ""
+    
+    enum CodingKeys: String, CodingKey {
+        case username
+        case password
+    }
 }
 
 struct Udacity: Codable {
-    let udacity: IdDict
+    var udacity: IdDict
+    
+    enum CodingKeys: String, CodingKey {
+        case udacity
+    }
 }

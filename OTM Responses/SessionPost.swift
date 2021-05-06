@@ -27,8 +27,13 @@ struct Session: Codable {
     }
 }
 
-struct FirstLevelObject: Codable {
+struct SessionPost: Codable {
     let account: Account
     let session: Session
+    
+    enum CodingKeys: String, CodingKey {
+        case account
+        case session
+    }
 }
 

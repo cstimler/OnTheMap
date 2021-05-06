@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F876C062643FE4900FF0DAC /* GetPublicUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F876C052643FE4800FF0DAC /* GetPublicUserData.swift */; };
 		9F87AD4B26415035000993B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87AD4A26415035000993B9 /* AppDelegate.swift */; };
 		9F87AD4D26415035000993B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87AD4C26415035000993B9 /* SceneDelegate.swift */; };
 		9F87AD5226415035000993B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F87AD5026415035000993B9 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F876C052643FE4800FF0DAC /* GetPublicUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPublicUserData.swift; sourceTree = "<group>"; };
 		9F87AD4726415035000993B9 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F87AD4A26415035000993B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F87AD4C26415035000993B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				9F8C5F642642289D0029EDAD /* RequestStudentLocationPost.swift */,
 				9F8C5F6A26422BD20029EDAD /* SessionPostRequest.swift */,
 				9F8C5F6D264279E40029EDAD /* GetPublicUserDataUdacity.swift */,
+				9F876C052643FE4800FF0DAC /* GetPublicUserData.swift */,
 			);
 			path = "OTM Requests";
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				9F8C5F59264200CC0029EDAD /* OTMClient.swift in Sources */,
 				9F8C5F6E264279E40029EDAD /* GetPublicUserDataUdacity.swift in Sources */,
 				9F8C5F542641FF900029EDAD /* UdacityResponseSession.swift in Sources */,
+				9F876C062643FE4900FF0DAC /* GetPublicUserData.swift in Sources */,
 				9F87AD6F264168E3000993B9 /* SessionPost.swift in Sources */,
 				9F87AD662641513D000993B9 /* TableViewController.swift in Sources */,
 				9F8C5F6826422AF40029EDAD /* StudentLocationPut.swift in Sources */,

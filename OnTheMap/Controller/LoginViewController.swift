@@ -9,6 +9,32 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    var email: String = ""
+    var password: String = ""
+    
+    @IBAction func pressedLogin(_ sender: Any) {
+        email = emailTextField.text ?? ""
+        password = passwordTextField.text ?? ""
+        OTMClient.PostSession(username: email, password: password) { (success, error) in
+            if success {
+                print("success")
+                OTMClient.GetPublicUserDataUdacity { (success, error) in
+                    if success {
+                        print("success #2")
+                    }
+                    else {
+                        print(error)
+                    }
+                }
+            } else {
+                print(error)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
