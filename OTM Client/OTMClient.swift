@@ -28,7 +28,7 @@ class OTMClient {
         
         var stringValue: String {
             switch self {
-            case .getStudentLocations: return Endpoints.base + "/StudentLocation?limit=200"
+            case .getStudentLocations: return Endpoints.base + "/StudentLocation?order=-updatedAt&limit=100"
             case .postStudentLocation: return Endpoints.base + "/StudentLocation"
             case .putStudentLocation(let objectId): return Endpoints.base + "\(objectId)"
             case .postUdacitySession: return Endpoints.base + "/session"
@@ -91,7 +91,7 @@ class OTMClient {
             let newData = data.subdata(in: range)
             let decoder = JSONDecoder()
                 let responseObject = try decoder.decode(GetPublicUserData.self, from: newData)
-              print(responseObject)
+          //    print(responseObject)
                 Auth.firstName = responseObject.firstName
                 Auth.lastName = responseObject.lastName
                 print(responseObject.firstName)
@@ -108,5 +108,32 @@ class OTMClient {
         task.resume()
             
         }
+    
+    class func GetStudentLocations(completion: @escaping (Bool, Error?) -> Void) {
+        var request = URLRequest(url: Endpoints.getStudentLocations.url)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) {
+            data, response, error in
+            guard let data = data else {
+                completion(false, error)
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                    let responseObject = try decoder.decode(Models.self, from: data)
+               //   print(responseObject)
+                  model = responseObject.results
+             //   print("Model includes:")
+              //  print(model)
+                    completion(true, nil) }
+                        catch
+                        {
+                            completion(false, error)
+                            return
+                        }
+                    }
+            task.resume()
+                
+            }
 }
 

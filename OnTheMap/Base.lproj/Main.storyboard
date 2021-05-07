@@ -68,7 +68,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="fn7-kP-Pxh" id="wX7-ae-c10"/>
                         <outlet property="passwordTextField" destination="u66-GC-Wg3" id="5Dm-XY-jsn"/>
-                        <segue destination="OWw-zf-LaH" kind="presentation" id="QNg-M1-sK2"/>
+                        <segue destination="OWw-zf-LaH" kind="showDetail" identifier="loggedIn" id="Y2U-3h-IwE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -78,7 +78,8 @@
         <!--Tab Bar Controller-->
         <scene sceneID="ovd-Z9-4cE">
             <objects>
-                <tabBarController id="OWw-zf-LaH" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="OWw-zf-LaH" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="MUa-wl-l1P"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fd7-Ud-nyT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -152,14 +153,31 @@
                     <view key="view" contentMode="scaleToFill" id="quU-sD-GGg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="SVb-lt-KrD">
+                                <rect key="frame" x="20" y="56" width="374" height="703"/>
+                                <connections>
+                                    <outlet property="delegate" destination="3EX-Is-qrc" id="cQx-4J-Ppu"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="5uU-dS-PDr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SVb-lt-KrD" firstAttribute="top" secondItem="5uU-dS-PDr" secondAttribute="top" id="52i-aS-cE2"/>
+                            <constraint firstItem="5uU-dS-PDr" firstAttribute="trailing" secondItem="SVb-lt-KrD" secondAttribute="trailing" constant="20" id="K7j-9c-8Ec"/>
+                            <constraint firstItem="SVb-lt-KrD" firstAttribute="leading" secondItem="5uU-dS-PDr" secondAttribute="leading" constant="20" id="dBl-9K-GlR"/>
+                            <constraint firstItem="SVb-lt-KrD" firstAttribute="bottom" secondItem="5uU-dS-PDr" secondAttribute="bottom" id="guy-tc-tJG"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hr3-bR-5g2"/>
+                    <connections>
+                        <outlet property="mapView" destination="SVb-lt-KrD" id="ncy-A0-yD1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lm2-lF-CEJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-561" y="-830"/>
+            <point key="canvasLocation" x="-562.31884057971024" y="-830.35714285714278"/>
         </scene>
         <!--Information Posting View Controller-->
         <scene sceneID="3J8-bV-EXY">

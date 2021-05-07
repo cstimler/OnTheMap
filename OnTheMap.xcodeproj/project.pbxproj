@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F80DC8926451A9E009E5ED4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F80DC8826451A9E009E5ED4 /* Model.swift */; };
+		9F80DC8E26451D34009E5ED4 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F80DC8D26451D34009E5ED4 /* StudentInformation.swift */; };
 		9F876C062643FE4900FF0DAC /* GetPublicUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F876C052643FE4800FF0DAC /* GetPublicUserData.swift */; };
 		9F87AD4B26415035000993B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87AD4A26415035000993B9 /* AppDelegate.swift */; };
 		9F87AD4D26415035000993B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87AD4C26415035000993B9 /* SceneDelegate.swift */; };
@@ -23,13 +25,14 @@
 		9F8C5F542641FF900029EDAD /* UdacityResponseSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F532641FF900029EDAD /* UdacityResponseSession.swift */; };
 		9F8C5F59264200CC0029EDAD /* OTMClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F58264200CC0029EDAD /* OTMClient.swift */; };
 		9F8C5F6026421F920029EDAD /* ResponseStudentLocationPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F5F26421F920029EDAD /* ResponseStudentLocationPost.swift */; };
-		9F8C5F652642289D0029EDAD /* RequestStudentLocationPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F642642289D0029EDAD /* RequestStudentLocationPost.swift */; };
 		9F8C5F6826422AF40029EDAD /* StudentLocationPut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F6726422AF40029EDAD /* StudentLocationPut.swift */; };
 		9F8C5F6B26422BD20029EDAD /* SessionPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F6A26422BD20029EDAD /* SessionPostRequest.swift */; };
 		9F8C5F6E264279E40029EDAD /* GetPublicUserDataUdacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C5F6D264279E40029EDAD /* GetPublicUserDataUdacity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F80DC8826451A9E009E5ED4 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		9F80DC8D26451D34009E5ED4 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		9F876C052643FE4800FF0DAC /* GetPublicUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPublicUserData.swift; sourceTree = "<group>"; };
 		9F87AD4726415035000993B9 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F87AD4A26415035000993B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +51,6 @@
 		9F8C5F532641FF900029EDAD /* UdacityResponseSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityResponseSession.swift; sourceTree = "<group>"; };
 		9F8C5F58264200CC0029EDAD /* OTMClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTMClient.swift; sourceTree = "<group>"; };
 		9F8C5F5F26421F920029EDAD /* ResponseStudentLocationPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStudentLocationPost.swift; sourceTree = "<group>"; };
-		9F8C5F642642289D0029EDAD /* RequestStudentLocationPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStudentLocationPost.swift; sourceTree = "<group>"; };
 		9F8C5F6726422AF40029EDAD /* StudentLocationPut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationPut.swift; sourceTree = "<group>"; };
 		9F8C5F6A26422BD20029EDAD /* SessionPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPostRequest.swift; sourceTree = "<group>"; };
 		9F8C5F6D264279E40029EDAD /* GetPublicUserDataUdacity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPublicUserDataUdacity.swift; sourceTree = "<group>"; };
@@ -65,9 +67,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F80DC8726451A7F009E5ED4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9F80DC8826451A9E009E5ED4 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		9F87AD3E26415035000993B9 = {
 			isa = PBXGroup;
 			children = (
+				9F80DC8726451A7F009E5ED4 /* Model */,
 				9F8C5F572642007F0029EDAD /* OTM Client */,
 				9F87AD6D26415BC8000993B9 /* OTM Responses */,
 				9F87AD6C26415BBC000993B9 /* OTM Requests */,
@@ -101,7 +112,6 @@
 		9F87AD6C26415BBC000993B9 /* OTM Requests */ = {
 			isa = PBXGroup;
 			children = (
-				9F8C5F642642289D0029EDAD /* RequestStudentLocationPost.swift */,
 				9F8C5F6A26422BD20029EDAD /* SessionPostRequest.swift */,
 				9F8C5F6D264279E40029EDAD /* GetPublicUserDataUdacity.swift */,
 				9F876C052643FE4800FF0DAC /* GetPublicUserData.swift */,
@@ -118,6 +128,7 @@
 				9F8C5F4A2641FE9A0029EDAD /* StudentLocationsGet.swift */,
 				9F87AD6E264168E3000993B9 /* SessionPost.swift */,
 				9F8C5F6726422AF40029EDAD /* StudentLocationPut.swift */,
+				9F80DC8D26451D34009E5ED4 /* StudentInformation.swift */,
 			);
 			path = "OTM Responses";
 			sourceTree = "<group>";
@@ -212,14 +223,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F8C5F6B26422BD20029EDAD /* SessionPostRequest.swift in Sources */,
-				9F8C5F652642289D0029EDAD /* RequestStudentLocationPost.swift in Sources */,
 				9F87AD6026415113000993B9 /* LoginViewController.swift in Sources */,
 				9F8C5F59264200CC0029EDAD /* OTMClient.swift in Sources */,
 				9F8C5F6E264279E40029EDAD /* GetPublicUserDataUdacity.swift in Sources */,
 				9F8C5F542641FF900029EDAD /* UdacityResponseSession.swift in Sources */,
 				9F876C062643FE4900FF0DAC /* GetPublicUserData.swift in Sources */,
+				9F80DC8E26451D34009E5ED4 /* StudentInformation.swift in Sources */,
 				9F87AD6F264168E3000993B9 /* SessionPost.swift in Sources */,
 				9F87AD662641513D000993B9 /* TableViewController.swift in Sources */,
+				9F80DC8926451A9E009E5ED4 /* Model.swift in Sources */,
 				9F8C5F6826422AF40029EDAD /* StudentLocationPut.swift in Sources */,
 				9F87AD4B26415035000993B9 /* AppDelegate.swift in Sources */,
 				9F87AD6926415154000993B9 /* InformationPostingViewController.swift in Sources */,

@@ -23,6 +23,13 @@ class LoginViewController: UIViewController {
                 print("success")
                 OTMClient.GetPublicUserDataUdacity { (success, error) in
                     if success {
+                        OTMClient.GetStudentLocations {(success, error) in
+                            if success {
+                                DispatchQueue.main.async {
+                                    self.performSegue(withIdentifier: "loggedIn", sender: self)
+                                }
+                            }
+                        }
                         print("success #2")
                     }
                     else {
@@ -41,7 +48,6 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
     /*
     // MARK: - Navigation
 
