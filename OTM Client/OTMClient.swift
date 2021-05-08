@@ -7,7 +7,10 @@
 
 import Foundation
 
+
 class OTMClient {
+    
+    typealias CLLocationDegrees = Double
     
     struct Auth {
         static var sessionId = ""
@@ -135,5 +138,34 @@ class OTMClient {
             task.resume()
                 
             }
-}
+    
+    class func PostStudentLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees, addressString: String, mediaURL: String, completion: @escaping (Bool, Error?) -> Void) {
+        var request = URLRequest(url: Endpoints.postStudentLocation.url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let body = StudentInformationPost(uniqueKey: Auth.key, firstName: Auth.firstName, lastName: Auth.lastName, mapString: addressString, mediaURL: mediaURL, latitude: latitude, longitude: longitude)
+        request.httpBody = try! JSONEncoder().encode(body)
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data else {
+                
+                completion(false, error)
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                let responseObject = try decoder.decode(ResponseStudentLocationPost.self, from: data)
+                print(responseObject)
+                completion(true, nil)
+            } catch {
+                print("Posting failed")
+                completion(false, error)
+                return
+            }
+        }
+        task.resume()
+    }
+        
+    }
+
 

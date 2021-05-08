@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F808C742646960A00EB8715 /* StudentInformationPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F808C732646960A00EB8715 /* StudentInformationPost.swift */; };
 		9F80DC8926451A9E009E5ED4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F80DC8826451A9E009E5ED4 /* Model.swift */; };
 		9F80DC8E26451D34009E5ED4 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F80DC8D26451D34009E5ED4 /* StudentInformation.swift */; };
 		9F876C062643FE4900FF0DAC /* GetPublicUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F876C052643FE4800FF0DAC /* GetPublicUserData.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9F808C732646960A00EB8715 /* StudentInformationPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformationPost.swift; sourceTree = "<group>"; };
 		9F80DC8826451A9E009E5ED4 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		9F80DC8D26451D34009E5ED4 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		9F876C052643FE4800FF0DAC /* GetPublicUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPublicUserData.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				9F8C5F6A26422BD20029EDAD /* SessionPostRequest.swift */,
 				9F8C5F6D264279E40029EDAD /* GetPublicUserDataUdacity.swift */,
 				9F876C052643FE4800FF0DAC /* GetPublicUserData.swift */,
+				9F808C732646960A00EB8715 /* StudentInformationPost.swift */,
 			);
 			path = "OTM Requests";
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				9F87AD6026415113000993B9 /* LoginViewController.swift in Sources */,
 				9F8C5F59264200CC0029EDAD /* OTMClient.swift in Sources */,
 				9F8C5F6E264279E40029EDAD /* GetPublicUserDataUdacity.swift in Sources */,
+				9F808C742646960A00EB8715 /* StudentInformationPost.swift in Sources */,
 				9F8C5F542641FF900029EDAD /* UdacityResponseSession.swift in Sources */,
 				9F876C062643FE4900FF0DAC /* GetPublicUserData.swift in Sources */,
 				9F80DC8E26451D34009E5ED4 /* StudentInformation.swift in Sources */,
