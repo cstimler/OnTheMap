@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import SafariServices
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
@@ -45,7 +46,7 @@ func mapView(_ mapView:MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotat
     }
     else {
         print("Reached nil")
-       var pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         pinView.canShowCallout = true
         pinView.pinTintColor = .green
         pinView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
@@ -59,9 +60,25 @@ func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, callou
     if control == view.rightCalloutAccessoryView {
         print("reached control")
         let app = UIApplication.shared
-        if let toOpen = view.annotation?.subtitle! {
-            app.openURL(URL(string: toOpen)!)
-        }
-    }
+        if var toOpen = view.annotation?.subtitle {
+            if var toOpen = toOpen{
+                if toOpen.prefix(7) != "http://" && toOpen.prefix(8) != "https://" {
+                    print("Your URL is incorrectly formatted")
+                } else {
+                if let url = URL(string: toOpen) {
+                DispatchQueue.main.async {
+                    // https://www.hackingwithswift.com/read/32/3/how-to-use-sfsafariviewcontroller-to-browse-a-web-page
+                    let config = SFSafariViewController.Configuration()
+                    config.entersReaderIfAvailable = true
+                    let vc = SFSafariViewController(url: url, configuration:config)
+                    self.present(vc, animated: true)
+                }
 }
+}
+}
+}
+}
+}
+    
+    
 }
