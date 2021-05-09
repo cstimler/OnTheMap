@@ -19,12 +19,12 @@ class LoginViewController: UIViewController {
     @IBAction func pressedLogin(_ sender: Any) {
         email = emailTextField.text ?? ""
         password = passwordTextField.text ?? ""
-        OTMClient.PostSession(username: email, password: password) { (success, error) in
+        OTMClient.postSession(username: email, password: password) { (success, error) in
             if success {
                 print("success")
-                OTMClient.GetPublicUserDataUdacity { (success, error) in
+                OTMClient.getPublicUserDataUdacity { (success, error) in
                     if success {
-                        OTMClient.GetStudentLocations {(success, error) in
+                        OTMClient.getStudentLocations {(success, error) in
                             if success {
                                 DispatchQueue.main.async {
                                     self.performSegue(withIdentifier: "loggedIn", sender: self)

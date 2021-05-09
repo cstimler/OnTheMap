@@ -82,6 +82,14 @@ func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, callou
 }
 }
     
+    @IBAction func mapToInfoSegue(_ sender: Any)
+        {
+            print("about to segue")
+            performSegue(withIdentifier: "mapToInfo", sender: self)
+        }
+    
+    
+    
     @IBAction func dismissAndLogout(_ sender: Any) {
         OTMClient.logout {
             print("Logged out.")
