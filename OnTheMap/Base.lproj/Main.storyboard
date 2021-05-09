@@ -112,7 +112,7 @@
             </objects>
             <point key="canvasLocation" x="-1546" y="197"/>
         </scene>
-        <!--Table View Controller-->
+        <!--On The Map-->
         <scene sceneID="Vv4-Jf-6Co">
             <objects>
                 <viewController id="E1b-DR-37H" customClass="TableViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -135,7 +135,12 @@
                             <outlet property="delegate" destination="E1b-DR-37H" id="ygN-DN-aFy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="M4h-IA-CU6">
+                    <navigationItem key="navigationItem" title="On The Map" id="M4h-IA-CU6">
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="Rd8-3a-QWG">
+                            <connections>
+                                <action selector="dismissAndLogout:" destination="E1b-DR-37H" id="Jb9-Lm-14k"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icon_pin" id="Q8x-yb-k8v">
                             <connections>
                                 <action selector="tableToInfoSegue:" destination="E1b-DR-37H" id="s1h-3C-p6y"/>
@@ -166,7 +171,7 @@
             </objects>
             <point key="canvasLocation" x="-1546" y="-830"/>
         </scene>
-        <!--Map View Controller-->
+        <!--On The Map-->
         <scene sceneID="HHQ-E9-oMh">
             <objects>
                 <viewController id="3EX-Is-qrc" customClass="MapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -174,7 +179,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </mapView>
-                    <navigationItem key="navigationItem" id="hr3-bR-5g2">
+                    <navigationItem key="navigationItem" title="On The Map" id="hr3-bR-5g2">
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="ggK-nf-57k">
+                            <connections>
+                                <action selector="dismissAndLogout:" destination="3EX-Is-qrc" id="Yy4-7x-bku"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icon_pin" id="AkZ-CR-LV8"/>
                     </navigationItem>
                     <connections>

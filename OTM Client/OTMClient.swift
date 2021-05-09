@@ -28,6 +28,7 @@ class OTMClient {
         case putStudentLocation(String)
         case postUdacitySession
         case getPublicUserDataUdacity
+        case deleteUdacitySession
         
         var stringValue: String {
             switch self {
@@ -36,6 +37,7 @@ class OTMClient {
             case .putStudentLocation(let objectId): return Endpoints.base + "\(objectId)"
             case .postUdacitySession: return Endpoints.base + "/session"
             case .getPublicUserDataUdacity: return Endpoints.base + "/users/" + Auth.key
+            case .deleteUdacitySession: return Endpoints.base + "/session"
             }
         }
         
@@ -44,7 +46,7 @@ class OTMClient {
         }
     }
     
-    class func PostSession(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
+    class func postSession(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
         print(username)
         print(password)
         var request = URLRequest(url: Endpoints.postUdacitySession.url)
@@ -80,7 +82,7 @@ class OTMClient {
         task.resume()
     }
     
-    class func GetPublicUserDataUdacity(completion: @ escaping (Bool, Error?) -> Void) {
+    class func getPublicUserDataUdacity(completion: @ escaping (Bool, Error?) -> Void) {
         var request = URLRequest(url: Endpoints.getPublicUserDataUdacity.url)
         let session = URLSession.shared
         let task = session.dataTask(with: request) {
@@ -112,7 +114,7 @@ class OTMClient {
             
         }
     
-    class func GetStudentLocations(completion: @escaping (Bool, Error?) -> Void) {
+    class func getStudentLocations(completion: @escaping (Bool, Error?) -> Void) {
         var request = URLRequest(url: Endpoints.getStudentLocations.url)
         let session = URLSession.shared
         let task = session.dataTask(with: request) {
@@ -139,7 +141,7 @@ class OTMClient {
                 
             }
     
-    class func PostStudentLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees, addressString: String, mediaURL: String, completion: @escaping (Bool, Error?) -> Void) {
+    class func postStudentLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees, addressString: String, mediaURL: String, completion: @escaping (Bool, Error?) -> Void) {
         var request = URLRequest(url: Endpoints.postStudentLocation.url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -165,7 +167,31 @@ class OTMClient {
         }
         task.resume()
     }
-        
+    
+    class func logout(completion: @escaping () -> Void) {
+        var request = URLRequest(url: Endpoints.deleteUdacitySession.url)
+        request.httpMethod = "DELETE"
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie}
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        let session = URLSession.shared
+        let task = session.dataTask(with: request)
+        { data, response, error in
+            if error != nil {
+                completion()
+                return
+            }
+            let range = 5..<data!.count
+            let newData = data?.subdata(in: range)
+            print(String(data: newData!, encoding: .utf8)!)
+        }
+        task.resume()
+    }
     }
 
 

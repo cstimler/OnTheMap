@@ -59,4 +59,12 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     */
 
-}
+    @IBAction func dismissAndLogout(_ sender: Any) {
+        OTMClient.logout {
+            print("Logged out.")
+        }
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)            }
+    }
+    }
+
