@@ -7,13 +7,18 @@
 
 import UIKit
 
-class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TableViewController: UITableViewController  {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return model.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell")!
         let user = model[(indexPath as NSIndexPath).row]
         cell.imageView?.image = UIImage(named: "icon_pin" )
@@ -22,7 +27,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let app = UIApplication.shared
         var toOpen = model[(indexPath as NSIndexPath).row].mediaURL
             if toOpen.prefix(3) == "www" {
@@ -35,7 +40,20 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-
+    @IBAction func reloadButtonPressed(_ sender: Any) {
+        OTMClient.getStudentLocations { (success, error) in
+            if success {
+                DispatchQueue.main.async {
+                    // it will also work if I don't remove annotations first, but the shadows will get darker!
+                        self.tableView.reloadData()
+            }
+            } else {
+                print("There was an error with the reload")
+                print(error)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,6 +67,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
 
+    
     /*
     // MARK: - Navigation
 

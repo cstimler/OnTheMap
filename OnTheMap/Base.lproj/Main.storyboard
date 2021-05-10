@@ -60,6 +60,9 @@
                                 <state key="normal" title="Don't have an account? Sign up.">
                                     <color key="titleColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="referToUdacity:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2pl-s7-sRy"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -141,12 +144,19 @@
                                 <action selector="dismissAndLogout:" destination="E1b-DR-37H" id="Jb9-Lm-14k"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="icon_pin" id="Q8x-yb-k8v">
-                            <connections>
-                                <action selector="tableToInfoSegue:" destination="E1b-DR-37H" id="s1h-3C-p6y"/>
-                                <segue destination="FGG-qq-Dm6" kind="presentation" identifier="tableToInfo" id="LwK-9d-Gd2"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="icon_pin" id="Q8x-yb-k8v">
+                                <connections>
+                                    <action selector="tableToInfoSegue:" destination="E1b-DR-37H" id="s1h-3C-p6y"/>
+                                    <segue destination="FGG-qq-Dm6" kind="presentation" identifier="tableToInfo" id="LwK-9d-Gd2"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="icon_refresh" id="Qcs-PL-dKn">
+                                <connections>
+                                    <action selector="reloadButtonPressed:" destination="E1b-DR-37H" id="tqW-de-w3M"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="64z-fJ-3rv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -179,19 +189,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </mapView>
+                    <toolbarItems>
+                        <barButtonItem title="Item" image="icon_refresh" id="9iX-pP-mAE"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="On The Map" id="hr3-bR-5g2">
                         <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="ggK-nf-57k">
                             <connections>
                                 <action selector="dismissAndLogout:" destination="3EX-Is-qrc" id="Yy4-7x-bku"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="icon_pin" id="AkZ-CR-LV8">
-                            <connections>
-                                <action selector="mapToInfoSegue:" destination="3EX-Is-qrc" id="nO9-uu-W01"/>
-                                <segue destination="FGG-qq-Dm6" kind="presentation" identifier="mapToInfo" id="Fag-4g-bpU"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="icon_pin" id="AkZ-CR-LV8">
+                                <connections>
+                                    <action selector="mapToInfoSegue:" destination="3EX-Is-qrc" id="nO9-uu-W01"/>
+                                    <segue destination="FGG-qq-Dm6" kind="presentation" identifier="mapToInfo" id="Fag-4g-bpU"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="icon_refresh" id="YNT-GO-EtZ">
+                                <connections>
+                                    <action selector="reloadButtonPressed:" destination="3EX-Is-qrc" id="1KJ-uU-pqU"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="xy2-Wx-VrU" id="ls7-eb-TJe"/>
                     </connections>
@@ -280,12 +301,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Fag-4g-bpU"/>
+        <segue reference="LwK-9d-Gd2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="icon_listview-deselected" width="75" height="50"/>
         <image name="icon_mapview-deselected" width="75" height="50"/>
         <image name="icon_pin" width="24" height="24"/>
+        <image name="icon_refresh" width="24" height="24"/>
         <image name="icon_world" width="52" height="67"/>
         <image name="logo-u" width="62" height="62"/>
         <systemColor name="systemBackgroundColor">

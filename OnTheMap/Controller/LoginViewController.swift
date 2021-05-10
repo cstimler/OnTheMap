@@ -49,6 +49,14 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func referToUdacity(_ sender: Any) {
+        let app = UIApplication.shared
+        if let url = URL(string: "http://www.udacity.com"){
+            app.open(url)
+        } else {
+            print("This person has no url")
+        }
+    }
     /*
     // MARK: - Navigation
 

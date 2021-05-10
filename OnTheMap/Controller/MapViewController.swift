@@ -13,7 +13,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
-   
+    var myAnnotations: [MKPointAnnotation]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             annotation.subtitle = mediaURL
             annotations.append(annotation)
         }
+        // lets store annotations here:
+        self.myAnnotations = annotations
         self.mapView.addAnnotations(annotations)
 }
 
@@ -64,6 +66,9 @@ func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, callou
         let app = UIApplication.shared
         if var toOpen = view.annotation?.subtitle {
             if var toOpen = toOpen{
+                if toOpen.prefix(3) == "www" {
+                    toOpen = "http://" + toOpen
+                }
                 if toOpen.prefix(7) != "http://" && toOpen.prefix(8) != "https://" {
                     print("Your URL is incorrectly formatted")
                 } else {
@@ -88,6 +93,21 @@ func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, callou
             performSegue(withIdentifier: "mapToInfo", sender: self)
         }
     
+    
+    @IBAction func reloadButtonPressed(_ sender: Any) {
+        OTMClient.getStudentLocations { (success, error) in
+            if success {
+                DispatchQueue.main.async {
+                    // it will also work if I don't remove annotations first, but the shadows will get darker!
+                self.mapView.removeAnnotations(self.myAnnotations ?? [])
+                self.viewDidLoad()
+            }
+            } else {
+                print("There was an error with the reload")
+                print(error)
+            }
+        }
+    }
     
     
     @IBAction func dismissAndLogout(_ sender: Any) {
