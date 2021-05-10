@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func referToUdacity(_ sender: Any) {
         let app = UIApplication.shared
-        if let url = URL(string: "http://www.udacity.com"){
+        if let url = URL(string: "https://auth.udacity.com/sign-up?next=https://classroom.udacity.com"){
             app.open(url)
         } else {
             print("This person has no url")
