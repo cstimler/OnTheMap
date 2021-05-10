@@ -209,13 +209,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jz0-yO-5NF">
-                                <rect key="frame" x="114" y="326" width="187" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Link" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fC6-o9-Lbt">
-                                <rect key="frame" x="114" y="405" width="187" height="34"/>
+                                <rect key="frame" x="88" y="326" width="240" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -229,14 +223,8 @@
                                     <action selector="findLocationButtonTapped:" destination="FGG-qq-Dm6" eventType="touchUpInside" id="9Vm-S0-j4x"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Link" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N0a-tn-65v">
-                                <rect key="frame" x="114" y="405" width="187" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aXC-Qi-jaz">
-                                <rect key="frame" x="88" y="606" width="240" height="128"/>
+                                <rect key="frame" x="63" y="109" width="293" height="625"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xpl-UL-ddh">
@@ -252,19 +240,26 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bR-Oe-oDl">
-                                <rect key="frame" x="177" y="532" width="64" height="42"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="hmP-BO-89I">
+                                <rect key="frame" x="177" y="143" width="52" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Link" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GQx-G5-she">
+                                <rect key="frame" x="88" y="404" width="240" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bR-Oe-oDl">
+                                <rect key="frame" x="109" y="692" width="202" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Finish"/>
                                 <connections>
                                     <action selector="finishButtonTapped:" destination="FGG-qq-Dm6" eventType="touchUpInside" id="eXf-Ep-95X"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="hmP-BO-89I">
-                                <rect key="frame" x="177" y="143" width="52" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bN1-S6-upI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -274,7 +269,8 @@
                         <outlet property="findLocationButton" destination="n0L-ES-RJ6" id="klV-LF-YGU"/>
                         <outlet property="finishButton" destination="2bR-Oe-oDl" id="5tu-1D-aOE"/>
                         <outlet property="location" destination="Jz0-yO-5NF" id="cNN-cx-IeK"/>
-                        <outlet property="myLink" destination="N0a-tn-65v" id="vkR-mC-abZ"/>
+                        <outlet property="mapIcon" destination="hmP-BO-89I" id="9sU-3O-hXM"/>
+                        <outlet property="myLink" destination="GQx-G5-she" id="VXA-Um-TWB"/>
                         <outlet property="myMapView" destination="aXC-Qi-jaz" id="ejt-Qp-okA"/>
                     </connections>
                 </viewController>

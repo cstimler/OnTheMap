@@ -25,7 +25,11 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var finishButton: UIButton!
     
-
+    @IBOutlet weak var mapIcon: UIImageView!
+    
+    var myCLLocation: CLLocationCoordinate2D?
+    
+    var myAddressString: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +39,7 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
         findLocationButton.isHidden = false
         location.isHidden = false
         myLink.isHidden = false
+        mapIcon.isHidden = false
        
         
         
@@ -50,7 +55,17 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func finishButtonTapped(_ sender: Any) {
-        
+        OTMClient.postStudentLocation(latitude: myCLLocation!.latitude, longitude: myCLLocation!.longitude, addressString: myAddressString!, mediaURL: myLink.text ?? "") { (success, error) in
+            if success {
+                print("Your post was completed successfully")
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)            }
+            } else {
+                print("Sorry but your post had an error:")
+                print(error)
+                
+            }
+        }
     }
     
 
@@ -68,12 +83,9 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
                     self.myMapView.isHidden = false
                     self.findLocationButton.isHidden = true
                     self.finishButton.isHidden = false
-                    self.location.isHidden = true
                     self.myLink.isHidden = true
-                    print(self.myLink.isHidden)
-                    self.myLink.text = String(self.myLink.isHidden)
-                    
-                    print("Got past myLink")
+                    self.location.isHidden = true
+                    self.mapIcon.isHidden = true
                     return
                 }
             } else {
@@ -97,25 +109,24 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
         guard CLLocationCoordinate2DIsValid(coordinates) else {
             print("Your location is bad, try again.")
             return}
+        // seems like a good place and time to locally store these coordinates and address for later use:
+        self.myCLLocation = coordinates
+        self.myAddressString = address
         myMapView.setRegion(region, animated: true)
-        print(self.myLink.isHidden)
     }
            
     func mapView(_ myMapView:MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseId = "pin"
         if let pinView = myMapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
          {
-            print("reached annotation")
             pinView.annotation = annotation
             return pinView
         }
         else {
-            print("Reached nil")
            var pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView.canShowCallout = true
             pinView.pinTintColor = .green
             pinView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure) as UIView
-            print(self.myLink.isHidden)
             return pinView
             
         }
@@ -125,19 +136,9 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
     
     
     @IBAction func dismissView(_ sender: Any) {
-        print(self.myLink.isHidden)
         DispatchQueue.main.async {
             self.dismiss(animated: true, completion: nil)            }
     }
 }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
