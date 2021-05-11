@@ -27,6 +27,8 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapIcon: UIImageView!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var myCLLocation: CLLocationCoordinate2D?
     
     var myAddressString: String?
@@ -58,6 +60,7 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
         } else if self.myLink.text == "" {
                 self.showInformationFailure(message: "Please enter a link!")
             } else {
+                setGeocodingIn(true)
         getCoordinate (addressString: location.text!, completionHandler: handleConversion(coordinates:error:address:))
     }
     }
@@ -107,6 +110,7 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
                     let location = placemark.location!
                         
                     completionHandler(location.coordinate, nil, addressString)
+                    self.setGeocodingIn(false)
                     self.myMapView.isHidden = false
                     self.findLocationButton.isHidden = true
                     self.finishButton.isHidden = false
@@ -117,6 +121,7 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
                 }
             } else {
                 print(error)
+                self.setGeocodingIn(false)
                 self.showInformationFailure(message: "Your geocode failed: The server might be down or the address might be bad.  Clarify the address and try again later.")
             }
             completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?, "")
@@ -144,7 +149,6 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
         let span = MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
         let region = MKCoordinateRegion(center: coordinates, span: span)
         guard CLLocationCoordinate2DIsValid(coordinates) else {
-            print("Your location is bad, try again.")
             self.showInformationFailure(message: "Your geocode failed: Your entered location has an error. Try clarifying the address and try again.")
             return}
         // seems like a good place and time to locally store these coordinates and address for later use:
@@ -173,7 +177,6 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
     }
     
     func showInformationFailure(message: String) {
-        print("GOT TO SHOW INFO FAILURE MESSAGE")
         DispatchQueue.main.async {
         let alertVC = UIAlertController(title: "Information Action Failed", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -182,6 +185,13 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
 
 }
     
+    func setGeocodingIn(_ geocodingIn: Bool) {
+        if geocodingIn {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+    }
     
     @IBAction func dismissView(_ sender: Any) {
         DispatchQueue.main.async {

@@ -130,10 +130,7 @@ class OTMClient {
             do {
                 let decoder = JSONDecoder()
                     let responseObject = try decoder.decode(Models.self, from: data)
-               //   print(responseObject)
-                  model = responseObject.results
-             //   print("Model includes:")
-              //  print(model)
+                    model = responseObject.results
                     completion(true, nil) }
                         catch
                         {
@@ -158,7 +155,6 @@ class OTMClient {
         let session = URLSession(configuration: configuration)
         let task = session.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
-                print("Timed out 777")
                 completion(false, error, " because of a server error.  Try again later.")
                 return
             }

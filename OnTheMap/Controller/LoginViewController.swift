@@ -29,6 +29,8 @@ class LoginViewController: UIViewController {
                                 DispatchQueue.main.async {
                                     self.performSegue(withIdentifier: "loggedIn", sender: self)
                                 }
+                            } else {
+                                self.showLoginFailure(message: "Unable to download student locations")
                             }
                         }
                         print("success #2")
@@ -60,7 +62,7 @@ class LoginViewController: UIViewController {
         if let url = URL(string: "https://auth.udacity.com/sign-up?next=https://classroom.udacity.com"){
             app.open(url)
         } else {
-            print("This person has no url")
+            showLoginFailure(message: "Referral Failed: Try connecting to Udacity again later.")
         }
     }
     func showLoginFailure(message: String) {
@@ -69,6 +71,5 @@ class LoginViewController: UIViewController {
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.show(alertVC, sender: nil)
     }
-
 }
 }

@@ -281,12 +281,18 @@
                                     <action selector="finishButtonTapped:" destination="FGG-qq-Dm6" eventType="touchUpInside" id="eXf-Ep-95X"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="pyf-Kn-YCi">
+                                <rect key="frame" x="200" y="519" width="20" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bN1-S6-upI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="oFY-FH-jyU"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="pyf-Kn-YCi" id="8I6-Dv-HzM"/>
                         <outlet property="findLocationButton" destination="n0L-ES-RJ6" id="klV-LF-YGU"/>
                         <outlet property="finishButton" destination="2bR-Oe-oDl" id="5tu-1D-aOE"/>
                         <outlet property="location" destination="Jz0-yO-5NF" id="cNN-cx-IeK"/>
