@@ -33,11 +33,17 @@ class TableViewController: UITableViewController  {
             if toOpen.prefix(3) == "www" {
                 toOpen = "http://" + toOpen
             }
+        if toOpen.prefix(7) != "http://" && toOpen.prefix(8) != "https://" {
+            print("Your URL is incorrectly formatted")
+            self.showTableFailure(message: "This student does not have a valid URL.  Try a different student")
+        } else {
         if let url = URL(string: toOpen){
             app.open(url)
         } else {
             print("This person has no url")
+            self.showTableFailure(message: "This student does not have a valid URL.  Try a different student")
         }
+    }
     }
     
     @IBAction func reloadButtonPressed(_ sender: Any) {
@@ -67,16 +73,14 @@ class TableViewController: UITableViewController  {
     }
     
 
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func showTableFailure(message: String) {
+        DispatchQueue.main.async {
+        let alertVC = UIAlertController(title: "Table Action Failed", message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alertVC, animated: true, completion: nil)
     }
-    */
+
+}
 
     @IBAction func dismissAndLogout(_ sender: Any) {
         OTMClient.logout {

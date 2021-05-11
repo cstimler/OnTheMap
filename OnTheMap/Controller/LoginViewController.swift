@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
     @IBAction func pressedLogin(_ sender: Any) {
         email = emailTextField.text ?? ""
         password = passwordTextField.text ?? ""
-        OTMClient.postSession(username: email, password: password) { (success, error) in
+        OTMClient.postSession(username: email, password: password) { (success, error, message) in
             if success {
                 print("success")
                 OTMClient.getPublicUserDataUdacity { (success, error) in
@@ -35,10 +35,16 @@ class LoginViewController: UIViewController {
                     }
                     else {
                         print(error)
+                        self.showLoginFailure(message: "Problem with network or server.  Please ensure good internet connection and try again.")
                     }
                 }
             } else {
                 print(error)
+                if message == "data nil" {
+                    self.showLoginFailure(message: "Problem with network or server.  Please ensure adequate internet service and try again.") }
+                else {
+                    self.showLoginFailure(message: "Incorrect email or password.  Please try again.")
+                }
             }
         }
     }
@@ -57,14 +63,12 @@ class LoginViewController: UIViewController {
             print("This person has no url")
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func showLoginFailure(message: String) {
+        DispatchQueue.main.async {
+        let alertVC = UIAlertController(title: "Login Failed", message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.show(alertVC, sender: nil)
     }
-    */
 
+}
 }

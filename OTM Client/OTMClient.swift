@@ -46,7 +46,7 @@ class OTMClient {
         }
     }
     
-    class func postSession(username: String, password: String, completion: @escaping (Bool, Error?) -> Void) {
+    class func postSession(username: String, password: String, completion: @escaping (Bool, Error?, String?) -> Void) {
         print(username)
         print(password)
         var request = URLRequest(url: Endpoints.postUdacitySession.url)
@@ -56,10 +56,16 @@ class OTMClient {
         let Dict = IdDict(username: username, password: password)
         let body = Udacity(udacity: Dict)
         request.httpBody = try! JSONEncoder().encode(body)
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        // We don't want to wait too long before getting a connectivity error
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 5
+        let session = URLSession(configuration: configuration)
+        let task = session.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
                 
-                completion(false, error)
+                DispatchQueue.main.async {
+                    completion(false, error, "data nil")
+                }
                 return
             }
             do {
@@ -68,14 +74,16 @@ class OTMClient {
                 let newData = data.subdata(in: range)
                 let decoder = JSONDecoder()
                 let responseObject = try decoder.decode(SessionPost.self, from: newData)
-                print(responseObject)
+                //print(responseObject)
                 Auth.key = responseObject.account.key
-                print(Auth.key)
                 Auth.sessionId = responseObject.session.id
-                print(Auth.sessionId)
-                completion(true, nil)
+                DispatchQueue.main.async {
+                    completion(true, nil, "")
+                }
             } catch {
-                completion(false, error)
+                DispatchQueue.main.async {
+                completion(false, error, "bad decode")
+                }
                 return
             }
         }
@@ -83,7 +91,7 @@ class OTMClient {
     }
     
     class func getPublicUserDataUdacity(completion: @ escaping (Bool, Error?) -> Void) {
-        var request = URLRequest(url: Endpoints.getPublicUserDataUdacity.url)
+        let request = URLRequest(url: Endpoints.getPublicUserDataUdacity.url)
         let session = URLSession.shared
         let task = session.dataTask(with: request) {
             data, response, error in
@@ -99,11 +107,7 @@ class OTMClient {
           //    print(responseObject)
                 Auth.firstName = responseObject.firstName
                 Auth.lastName = responseObject.lastName
-                print(responseObject.firstName)
-                print(responseObject.lastName)
-                print(responseObject.key)
                 completion(true, nil) }
-            
                     catch
                     {
                         completion(false, error)
@@ -115,7 +119,7 @@ class OTMClient {
         }
     
     class func getStudentLocations(completion: @escaping (Bool, Error?) -> Void) {
-        var request = URLRequest(url: Endpoints.getStudentLocations.url)
+        let request = URLRequest(url: Endpoints.getStudentLocations.url)
         let session = URLSession.shared
         let task = session.dataTask(with: request) {
             data, response, error in
@@ -141,27 +145,31 @@ class OTMClient {
                 
             }
     
-    class func postStudentLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees, addressString: String, mediaURL: String, completion: @escaping (Bool, Error?) -> Void) {
+    class func postStudentLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees, addressString: String, mediaURL: String?, completion: @escaping (Bool, Error?, String?) -> Void) {
         var request = URLRequest(url: Endpoints.postStudentLocation.url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let body = StudentInformationPost(uniqueKey: Auth.key, firstName: Auth.firstName, lastName: Auth.lastName, mapString: addressString, mediaURL: mediaURL, latitude: latitude, longitude: longitude)
+        let body = StudentInformationPost(uniqueKey: Auth.key, firstName: Auth.firstName, lastName: Auth.lastName, mapString: addressString, mediaURL: mediaURL ?? "", latitude: latitude, longitude: longitude)
         request.httpBody = try! JSONEncoder().encode(body)
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        // We don't want to wait too long before getting a connectivity error
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 5
+        let session = URLSession(configuration: configuration)
+        let task = session.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
-                
-                completion(false, error)
+                print("Timed out 777")
+                completion(false, error, " because of a server error.  Try again later.")
                 return
             }
             do {
                 let decoder = JSONDecoder()
                 let responseObject = try decoder.decode(ResponseStudentLocationPost.self, from: data)
                 print(responseObject)
-                completion(true, nil)
+                completion(true, nil, "")
             } catch {
                 print("Posting failed")
-                completion(false, error)
+                completion(false, error, " Try again.")
                 return
             }
         }

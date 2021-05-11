@@ -44,12 +44,10 @@ func mapView(_ mapView:MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotat
     let reuseId = "pin"
     if let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
      {
-        print("reached annotation")
         pinView.annotation = annotation
         return pinView
     }
     else {
-        print("Reached nil")
         let pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
         pinView.canShowCallout = true
         pinView.pinTintColor = .green
@@ -62,8 +60,7 @@ func mapView(_ mapView:MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotat
 
 func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
     if control == view.rightCalloutAccessoryView {
-        print("reached control")
-        let app = UIApplication.shared
+       // let app = UIApplication.shared
         if var toOpen = view.annotation?.subtitle {
             if var toOpen = toOpen{
                 if toOpen.prefix(3) == "www" {
@@ -71,7 +68,8 @@ func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, callou
                 }
                 if toOpen.prefix(7) != "http://" && toOpen.prefix(8) != "https://" {
                     print("Your URL is incorrectly formatted")
-                } else {
+                    showMapFailure(message: "This student does not have a valid URL")
+                }
                 if let url = URL(string: toOpen) {
                 DispatchQueue.main.async {
                     // https://www.hackingwithswift.com/read/32/3/how-to-use-sfsafariviewcontroller-to-browse-a-web-page
@@ -85,11 +83,10 @@ func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, callou
 }
 }
 }
-}
+
     
     @IBAction func mapToInfoSegue(_ sender: Any)
         {
-            print("about to segue")
             performSegue(withIdentifier: "mapToInfo", sender: self)
         }
     
@@ -103,6 +100,7 @@ func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, callou
                 self.viewDidLoad()
             }
             } else {
+                self.showMapFailure(message: "There was a problem with the reload, try again.")
                 print("There was an error with the reload")
                 print(error)
             }
@@ -117,6 +115,15 @@ func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, callou
         DispatchQueue.main.async {
             self.dismiss(animated: true, completion: nil)            }
     }
+    
+    func showMapFailure(message: String) {
+        DispatchQueue.main.async {
+        let alertVC = UIAlertController(title: "Map Action Failed", message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alertVC, animated: true, completion: nil)
+    }
+
+}
     }
     
 
