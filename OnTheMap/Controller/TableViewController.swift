@@ -9,9 +9,22 @@ import UIKit
 
 class TableViewController: UITableViewController  {
     
+    //  I used code from the following website to allow this view controller rotations: https://stackoverflow.com/questions/36358032/override-app-orientation-setting/48120684#48120684
+    
+    func setAutoRotation(value: Bool) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+       appDelegate.autoRotation = value
+    }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setAutoRotation(value: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        setAutoRotation(value: false)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,22 +43,25 @@ class TableViewController: UITableViewController  {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let app = UIApplication.shared
         var toOpen = model[(indexPath as NSIndexPath).row].mediaURL
+        // patch up incomplete URL:
             if toOpen.prefix(3) == "www" {
                 toOpen = "http://" + toOpen
             }
+        // check to see if URL is well formed:
         if toOpen.prefix(7) != "http://" && toOpen.prefix(8) != "https://" {
-            print("Your URL is incorrectly formatted")
+            // show alert if user tries to access poorly formed URL from tableview:
             self.showTableFailure(message: "This student does not have a valid URL.  Try a different student")
         } else {
         if let url = URL(string: toOpen){
+            setAutoRotation(value: true)
             app.open(url)
         } else {
-            print("This person has no url")
+            // just in case a poorly formed URL somehow made it through:
             self.showTableFailure(message: "This student does not have a valid URL.  Try a different student")
         }
     }
     }
-    
+    // reload button gets updated student locations and then reloads the table view:
     @IBAction func reloadButtonPressed(_ sender: Any) {
         OTMClient.getStudentLocations { (success, error) in
             if success {
@@ -54,25 +70,18 @@ class TableViewController: UITableViewController  {
                         self.tableView.reloadData()
             }
             } else {
-                print("There was an error with the reload")
+                self.showTableFailure(message: "There was an error with the reload, try again.")
                 print(error)
             }
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
     
     @IBAction func tableToInfoSegue(_ sender: Any) {
-        print("about to segue")
         performSegue(withIdentifier: "tableToInfo", sender: self)
     }
     
-
+    // function that calls the alert controller:
     func showTableFailure(message: String) {
         DispatchQueue.main.async {
         let alertVC = UIAlertController(title: "Table Action Failed", message: message, preferredStyle: .alert)
@@ -81,7 +90,7 @@ class TableViewController: UITableViewController  {
     }
 
 }
-
+    // logout:
     @IBAction func dismissAndLogout(_ sender: Any) {
         OTMClient.logout {
             print("Logged out.")

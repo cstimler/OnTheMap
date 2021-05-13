@@ -11,6 +11,24 @@ import CoreLocation
 
 
 class InformationPostingViewController: UIViewController, MKMapViewDelegate {
+    
+    //  I used code from the following website to allow/disallow this view controller rotations: https://stackoverflow.com/questions/36358032/override-app-orientation-setting/48120684#48120684
+    
+    func setAutoRotation(value: Bool) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+       appDelegate.autoRotation = value
+    }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setAutoRotation(value: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        setAutoRotation(value: true)
+    }
 
     
     @IBOutlet weak var location: UITextField!
@@ -35,31 +53,23 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
     
     var myGeocoder: CLGeocoder?
     
+    // when loading the page there is a hidden view consisting of the map and the
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         myMapView.delegate = self
-        myMapView.isHidden = true
-        finishButton.isHidden = true
-        findLocationButton.isHidden = false
-        location.isHidden = false
-        myLink.isHidden = false
-        mapIcon.isHidden = false
-       
-        
-        
-        
-        
-
-        // Do any additional setup after loading the view.
+        manageHiddenViews(false)
     }
     
 // https://stackoverflow.com/questions/42279252/convert-address-to-coordinates-swift
     @IBAction func findLocationButtonTapped(_ sender: Any) {
+        // notify user if they have left out the location or link information:
         if location.text == "" {
             self.showInformationFailure(message: "Please enter a location!")
         } else if self.myLink.text == "" {
                 self.showInformationFailure(message: "Please enter a link!")
             } else {
+                // start the activity indicator:
                 setGeocodingIn(true)
         getCoordinate (addressString: location.text!, completionHandler: handleConversion(coordinates:error:address:))
     }
@@ -70,18 +80,15 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
         var totalMessage: String=""
         OTMClient.postStudentLocation(latitude: myCLLocation!.latitude, longitude: myCLLocation!.longitude, addressString: myAddressString!, mediaURL: myLink.text) { (success, error, message) in
             if success {
-                print("Your post was completed successfully")
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)            }
             } else {
-                print("Got to message handler!!!!")
                 if let message = message {
                     totalMessage = "Sorry, but your post failed" + message
                 } else {
                 totalMessage = "Sorry, but your post failed."
                 }
                 self.showInformationFailure(message: totalMessage)
-                print("Sorry but your post had an error:")
                 print(error)
                 
             }
@@ -99,9 +106,11 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
             return
         }
         let geocoder = CLGeocoder()
+        // save the current instance of geocoder for use with the timer
         self.myGeocoder = geocoder
         // https://stackoverflow.com/questions/19443635/clgeocoder-how-to-set-timeout/44266971 and:
         // https://www.hackingwithswift.com/articles/117/the-ultimate-guide-to-timer
+        // time will trigger an error if no response 5 seconds after pressing find location button:
         let timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.timeout), userInfo: nil, repeats: false)
         RunLoop.current.add(timer, forMode: .common)
             geocoder.geocodeAddressString(addressString) { (placemarks, error) in
@@ -110,29 +119,27 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
                     let location = placemark.location!
                         
                     completionHandler(location.coordinate, nil, addressString)
+                    // turn off the activity indicator
                     self.setGeocodingIn(false)
-                    self.myMapView.isHidden = false
-                    self.findLocationButton.isHidden = true
-                    self.finishButton.isHidden = false
-                    self.myLink.isHidden = true
-                    self.location.isHidden = true
-                    self.mapIcon.isHidden = true
-                    return
+                    self.manageHiddenViews(true)
                 }
             } else {
                 print(error)
+                // turn off the activity indicator
                 self.setGeocodingIn(false)
+                // geocode has returned with an error = either due to bad server OR bad address, can't be sure:
                 self.showInformationFailure(message: "Your geocode failed: The server might be down or the address might be bad.  Clarify the address and try again later.")
             }
-            completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?, "")
         }
     }
     
+    // timeout function cancels geocoder if it is still running 5 seconds after it was triggered:
     @objc func timeout()
     {
         if let myGeocoder = self.myGeocoder {
         if (myGeocoder.isGeocoding){
             myGeocoder.cancelGeocode()
+            // message indicates internet connection is down:
             self.showInformationFailure(message: "Network error, cannot geocode!  Try again when internet is working.")
         }
     }
@@ -143,11 +150,11 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
         mkAnnotation.coordinate = coordinates
         mkAnnotation.title = address
         self.myMapView.addAnnotation(mkAnnotation)
-       // myMapView.setCenter(coordinates, animated: true)
         // https://stackoverflow.com/questions/41639478/mkmapview-center-and-zoom-in
        // https://developer.apple.com/documentation/mapkit/mkcoordinatespan
         let span = MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
         let region = MKCoordinateRegion(center: coordinates, span: span)
+        // print(coordinates) - good point to debug if problems!
         guard CLLocationCoordinate2DIsValid(coordinates) else {
             self.showInformationFailure(message: "Your geocode failed: Your entered location has an error. Try clarifying the address and try again.")
             return}
@@ -175,7 +182,7 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
         
         
     }
-    
+    // This function displays the alert box in case of errors:
     func showInformationFailure(message: String) {
         DispatchQueue.main.async {
         let alertVC = UIAlertController(title: "Information Action Failed", message: message, preferredStyle: .alert)
@@ -184,7 +191,7 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
     }
 
 }
-    
+    // manages activity indicator:
     func setGeocodingIn(_ geocodingIn: Bool) {
         if geocodingIn {
             activityIndicator.startAnimating()
@@ -192,8 +199,19 @@ class InformationPostingViewController: UIViewController, MKMapViewDelegate {
             activityIndicator.stopAnimating()
         }
     }
+    // coordinates the subviews:
+   func manageHiddenViews(_ hiddenView: Bool) {
+    myMapView.isHidden = !hiddenView
+    finishButton.isHidden = !hiddenView
+    findLocationButton.isHidden = hiddenView
+    location.isHidden = hiddenView
+    myLink.isHidden = hiddenView
+    mapIcon.isHidden = hiddenView
+    setAutoRotation(value: hiddenView)
+    }
     
     @IBAction func dismissView(_ sender: Any) {
+        setAutoRotation(value: true)
         DispatchQueue.main.async {
             self.dismiss(animated: true, completion: nil)            }
     }
